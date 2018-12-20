@@ -101,3 +101,4 @@ lemon-order为生成的镜像名， .表示当前目录
 5.然后就可以通过外网ip+端口号访问项目
 
 "# myblogo" 
+"# myblogo" 
