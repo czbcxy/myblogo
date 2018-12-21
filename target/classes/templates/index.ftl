@@ -1,14 +1,19 @@
 <html lang="zh">
+<#-- 博客列表页 -->
 <head>
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>${title!'书中人 - 鸿蒙空间'}</title>
+    <title>${articleTitle!'书中人'}</title>
 
-    <!-- Custom styles for this template -->
-    <link href="/css/full-slider/full-slider.css" rel="stylesheet">
+<#-- EditorMD -->
+    <link href="/vendor/editor/css/editormd.css" rel="stylesheet">
+
+<#-- landing-page -->
+    <link rel="stylesheet" href="/vendor/landing-page/landing-page.min.css">
 
 <#-- 自定义 样式 -->
 <#include "public/front_custom_css.ftl">
@@ -18,118 +23,108 @@
 </head>
 
 <body>
-<#assign page_index = 0>
+
+<#assign page_index = 1>
 <#-- s-nav.ftl -->
 <#include "public/nav.ftl">
 <#-- e-nav.ftl -->
-
-<#-- s-slide-header -->
-<header>
-    <div id="slideIndicators" class="carousel slide" data-ride="carousel" data-interval="3000" data-pause="">
-        <ol class="carousel-indicators">
-            <li data-target="#slideIndicators" data-slide-to="0" class="active"></li>
-            <li data-target="#slideIndicators" data-slide-to="1"></li>
-            <li data-target="#slideIndicators" data-slide-to="2"></li>
-        </ol>
-        <div class="carousel-inner" role="listbox">
-            <!-- Slide One - Set the background image for this slide in the line below -->
-            <div class="carousel-item active"
-                 style="background-image: url('https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3852596873,3271841964&fm=26&gp=0.jpg')">
-                <div class="carousel-caption d-none d-md-block">
-                    <h3 class="txt_shadow">你所有不努力的借口都是自欺欺人</h3>
-                    <p class="txt_shadow">You don't work hard all excuses are deluding themselves .</p>
+<!-- 落地页 -->
+<#--<header class="masthead text-white text-center"-->
+        <#--style="background-image: url('http://blackrockdigital.github.io/startbootstrap-clean-blog/img/home-bg.jpg')">-->
+    <#--<div class="overlay"></div>-->
+    <#--<div class="container">-->
+        <#--<div class="row">-->
+            <#--<div class="col mx-auto text-left pl-5">-->
+                <#--<h1>书中人-BLOGO</h1>-->
+                <#--<h3>初问不识书中意，再读已是书中人</h3>-->
+            <#--</div>-->
+        <#--</div>-->
+    <#--</div>-->
+<#--</header>-->
+<div class="container container-fluid mt-5 mb-5">
+<#--<img src="http://blackrockdigital.github.io/startbootstrap-clean-blog/img/home-bg.jpg" alt="">-->
+    <div class="row">
+        <div class="col-md-2">
+        </div>
+    <#-- s 左侧 -->
+        <div class="col-md-6">
+            <ul class="list-unstyled">
+            <#if postlist??>
+                <div style="height: 30px"></div>
+                <#if (postlist?size>0)>
+                    <#list postlist as post>
+                        <div style="font-family: "Microsoft YaHei", Helvetica, "Meiryo UI", "Malgun Gothic", "Segoe UI", "Trebuchet MS", "Monaco", monospace, Tahoma, STXihei, "华文细黑", STHeiti, "Helvetica Neue", "Droid Sans", "wenquanyi micro hei", FreeSans, Arimo, Arial, SimSun, "宋体", Heiti, "黑体", sans-serif">
+                            <a href="/blog/${post.id!""}" class="text-dark" target="_parent">
+                                <h5 style="font-size: 20px;">${post.title!""} </h5>
+                                <p>&nbsp;&nbsp;&nbsp;&nbsp;${post.description}</p>
+                            </a>
+                            <p style="text-align:right;">
+                                <small>
+                                   | 阅读量:${post.seeCount!""} | 创建时间：${post.dateTime!""} |
+                                </small>
+                            </p>
+                        </div>
+                        <hr>
+                    </#list>
+                <#else>
+                    <div class="card border-danger mt-3 mb-3">
+                        <div class="card-body text-danger">
+                            <h2 class="card-title"><i class="fa fa-warning fa-1x"></i> 抱歉，没有找到相关内容</h2>
+                            <p class="card-text">试试其他关键字？</p>
+                        </div>
+                    </div>
+                </#if>
+            </#if>
+            </ul>
+        </div>
+    <#-- e 左侧 -->
+    <#-- s 右侧 -->
+        <div class="col-md-4 mt-3">
+            <div class="card mb-3">
+                <div class="card-header">
+                    搜索文章
                 </div>
-            </div>
-            <!-- Slide Two - Set the background image for this slide in the line below -->
-            <div class="carousel-item"
-                 style="background-image: url('https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1545193047980&di=f37f8a63e47b4a060392ea917f669a04&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fimgad%2Fpic%2Fitem%2Fc8ea15ce36d3d539dfa9dd173087e950342ab04a.jpg')">
-                <div class="carousel-caption d-none d-md-block">
-                    <h3 class="txt_shadow">若去时无人道声珍重，愿归时无人落笔剧终</h3>
-                    <p class="txt_shadow">When go to no humanitarian care, may be the end of the no one to put pen to paper . </p>
-                </div>
-            </div>
-            <!-- Slide Three - Set the background image for this slide in the line below -->
-            <div class="carousel-item"
-                 style="background-image: url('https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1545193047977&di=aefa18c7987a676294d173a18d10b077&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fimgad%2Fpic%2Fitem%2F32fa828ba61ea8d342dca8d09d0a304e241f586c.jpg')">
-                <div class="carousel-caption d-none d-md-block">
-                    <h3 class="txt_shadow">你们中大多数人都熟悉程序员的美德，有三种：那就是懒惰、急躁和傲慢</h3>
-                    <p class="txt_shadow">Most of you are familiar with the programmer's virtues, and there are three: laziness,
-                        impatience, and arrogance. </p>
+                <div class="card-body">
+                    <form action="/postsearch">
+                        <div class="input-group">
+                            <input name="name" type="text" class="form-control" placeholder="输入你想查找的题目..."
+                                   aria-label="输入你想查找的题目...">
+                            <span class="input-group-btn">
+                        <button class="btn btn-primary" type="submit">搜索</button>
+                    </span>
+                    </form>
                 </div>
             </div>
         </div>
-</header>
-<#-- e-slide-header-->
-
-<div>
-    <h1>我是测试</h1>
-</div>
-<!-- Page Content -->
-<section class="py-5">
-    <marquee behavior="alternate">人生如逆旅，我亦是行人</marquee>
-    <marquee behavior="scroll" scrolldelay="20" direction="up" height="300" bgcolor="#D3D3D3">
-    <div class="container container-fluid" style="text-align:center">
-        <header>2019年我的目标就是完成2018年那些本该在2017年完成的我在2016年就信誓旦旦要完成2015年制定的目标</header>
-        <table id="mytable" cellspacing="0" summary="2018年度总评" style="margin: auto; width:100%">
-            <tr>
-                <th scope="col" abbr="项目" >项目</th>
-                <th scope="col" abbr="进度">进度</th>
-                <th scope="col" abbr="评价">评价</th>
-            </tr>
-            <tr>
-                <th scope="row" abbr="Model" class="spec">坚持读书</th>
-                <td>70%</td>
-                <td>良好</td>
-            </tr>
-            <tr>
-                <th scope="row" abbr="G5 Processor" class="specalt">顺利工作</th>
-                <td class="alt">70%</td>
-                <td class="alt">良好</td>
-            </tr>
-            <tr>
-                <th scope="row" abbr="Frontside bus" class="spec">锻炼身体</th>
-                <td>50%</td>
-                <td>不及格</td>
-            </tr>
-            <tr>
-                <th scope="row" abbr="L2 Cache" class="specalt">学历提升</th>
-                <td class="alt">80%</td>
-                <td class="alt">良好</td>
-            </tr>
-            <tr>
-                <th scope="row" abbr="L2 Cache" class="specalt">专业技能</th>
-                <td class="alt">70%</td>
-                <td class="alt">良好</td>
-            </tr>
-            <tr>
-                <th scope="row" abbr="L2 Cache" class="specalt">旅游</th>
-                <td class="alt">70%</td>
-                <td class="alt">良好</td>
-            </tr>
-            <#--<tr>-->
-                <#--<th scope="row" abbr="L2 Cache" class="specalt">找个对象</th>-->
-                <#--<td class="alt">----</td>-->
-                <#--<td class="alt">----</td>-->
-            <#--</tr>-->
-            <#--<tr>-->
-                <#--<th scope="row" abbr="L2 Cache" class="specalt">买房</th>-->
-                <#--<td class="alt">20%</td>-->
-                <#--<td class="alt">不及格</td>-->
-            <#--</tr>-->
-            <tr>
-                <th scope="row" abbr="L2 Cache" class="specalt">考驾照</th>
-                <td class="alt">100%</td>
-                <td class="alt">优秀</td>
-            </tr>
-            <#--<tr>-->
-                <#--<th scope="row" abbr="L2 Cache" class="specalt">买车</th>-->
-                <#--<td class="alt">30%</td>-->
-                <#--<td class="alt">不及格</td>-->
-            <#--</tr>-->
-        </table>
+    <#if taglist??>
+        <div class="card mb-3">
+            <div class="card-header">
+                热门标签
+            </div>
+            <div class="card-body">
+                <#list taglist as tag>
+                    <!-- tag -->
+                    <a href="/post?tagId=${tag.tagId!''}" target="_blank">
+                        <button type="button" class="btn btn-outline-primary mb-3">
+                        ${tag.tagName!""} <span class="badge badge-primary">${tag.articleCount!""}</span>
+                        </button>
+                    </a>
+                </#list>
+            </div>
+        </div>
+    </#if>
+    <#-- e 右侧 -->
     </div>
-    </marquee>
-</section>
+</div>
+</div>
+
+<style>
+    .card-body a:{
+        font-family: "Microsoft YaHei", Helvetica, "Meiryo UI", "Malgun Gothic", "Segoe UI", "Trebuchet MS", "Monaco", monospace, Tahoma, STXihei, "华文细黑", STHeiti, "Helvetica Neue", "Droid Sans", "wenquanyi micro hei", FreeSans, Arimo, Arial, SimSun, "宋体", Heiti, "黑体", sans-serif;
+        font-size: small;
+    }
+</style>
+
 
 <#-- s-footer -->
 <#include "public/footer.ftl">

@@ -4,12 +4,12 @@
         <div class="row">
             <div class="col-lg-6 text-center text-lg-left my-auto">
                 <ul class="list-inline mb-2 text-white">
+                    <#--<li class="list-inline-item">-->
+                        <#--<a href="/" class="text-white">Home Page</a>-->
+                    <#--</li>-->
+                    <#--<li class="list-inline-item">&sdot;</li>-->
                     <li class="list-inline-item">
-                        <a href="/" class="text-white">Home Page</a>
-                    </li>
-                    <li class="list-inline-item">&sdot;</li>
-                    <li class="list-inline-item">
-                        <a href="/post" class="text-white">Blog</a>
+                        <a href="/index" class="text-white">Blog</a>
                     </li>
                     <li class="list-inline-item">&sdot;</li>
                     <li class="list-inline-item">
@@ -20,8 +20,8 @@
                         <a href="http://github.com/czbcxy" target="_blank" class="text-white">Github Project</a>
                     </li>
                 </ul>
-                <p class="text-muted small mb-4 mb-lg-0">&copy; CarverCZB 2018-2019 All Rights Reserved. </p>
-                <p class="text-muted small mb-4 mb-lg-0">陕 ICP 备 18120182 号</p>
+                <p class="text-muted small mb-4 mb-lg-0">&copy; CarverCZB 2018-3019 All Rights Reserved. </p>
+                <p class="text-muted small mb-4 mb-lg-0">陕 ICP 备 99999999 号</p>
             </div>
             <div class="col-lg-6 text-center text-lg-right my-auto">
                 <ul class="list-inline mb-0">
