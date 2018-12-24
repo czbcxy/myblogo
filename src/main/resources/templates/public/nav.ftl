@@ -1,5 +1,5 @@
 <!-- Navigation -->
-<nav class="navbar navbar-expand-xl navbar-dark bg-dark fixed-top">
+<nav class="navbar navbar-expand-xl navbar-dark bg-dark fixed-top " >
     <div class="container-fluid">
     <#-- Logo 位置 -->
         <img class="mr-3" alt="Logo"
@@ -15,20 +15,8 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
         <#-- s 左侧导航 -->
             <ul class="nav navbar-nav">
-                <li class="nav-item">
+                <li class="nav-item ">
                     <a class="nav-link"><#-- 占位 --></a>
-                </li>
-                <li class="nav-item <#if page_index?? && page_index == 0>active</#if>">
-                    <a class="nav-link" href="/">Home Page</a>
-                </li>
-                <li class="nav-item <#if page_index?? && page_index == 1>active</#if>">
-                    <a class="nav-link" href="/post">Blog</a>
-                </li>
-                <li class="nav-item <#if page_index?? && page_index == 2>active</#if>">
-                    <a class="nav-link" href="/resume">About</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#"></a>
                 </li>
             </ul>
         <#-- e 左侧导航 -->
@@ -47,18 +35,18 @@
                        aria-haspopup="true" aria-expanded="false">${Session ["session_current_user"].username!'登录'}<span
                             class="caret"></span></a>
                     <div class="dropdown-menu dropdown-menu-right">
-                        <a class="dropdown-item" href="/userprofile.info">My profile</a>
-                        <a class="dropdown-item" href="/Message.info">Message</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="/usersignout.c">Log out</a>
+                        <#--<a class="dropdown-item" href="/userprofile.info">My profile</a>-->
+                        <#--<a class="dropdown-item" href="/Message.info">Message</a>-->
+                        <#--<div class="dropdown-divider"></div>-->
+                        <a class="dropdown-item" href="/usersignout.c">退出</a>
                     </div>
                 </li>
             <#else>
                 <li class="nav-item">
-                    <a class="nav-link" href="/userregister">Registered</a>
+                    <a class="nav-link" href="/userregister">注册</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/userlogin">Login</a>
+                    <a class="nav-link" href="/userlogin">登录</a>
                 </li>
             </#if>
             </ul>

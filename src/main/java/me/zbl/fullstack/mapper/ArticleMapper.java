@@ -6,6 +6,7 @@ import me.zbl.fullstack.framework.mapper.IMyMapper;
 import me.zbl.fullstack.mapper.provider.ArticleSqlProvider;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.SelectProvider;
+import org.apache.ibatis.annotations.Update;
 
 import java.util.List;
 
@@ -14,7 +15,7 @@ import java.util.List;
  */
 public interface ArticleMapper extends IMyMapper<Article> {
 
-  String COLUMN_LIST = "article.id,title,introduction,article.gmt_create AS gmtCreate,article.gmt_modified AS gmtModified";
+  String COLUMN_LIST = "article.id,title,introduction,article.gmt_create AS gmtCreate,article.gmt_modified AS gmtModified ,see_count as seeCount";
 
   @Select({
                   "SELECT",
@@ -52,4 +53,13 @@ public interface ArticleMapper extends IMyMapper<Article> {
    */
   @SelectProvider(type = ArticleSqlProvider.class, method = "getArticleByCondition")
   List<Article> getArticleListByCondition(ArticleSearchForm form);
+
+  /**
+   * 增加访问量
+   * @param id
+   */
+  @Update({
+          "UPDATE article SET  see_count = see_count + 1 WHERE id = #{id}"
+  })
+  void updateCountById(Integer id);
 }

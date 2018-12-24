@@ -29,23 +29,23 @@ public class FrontController extends BaseController {
     return "error";
   }
 
-  /**
-   * 前台首页
-   * GET
-   */
-  @GetMapping("/index")
-  public String pFrontIndex(HttpServletRequest request, Model model) {
-    return "index";
-  }
-
-  /**
-   * 前台首页
-   * POST
-   */
-  @PostMapping("/index")
-  public String pFrontIndexPost(HttpServletRequest request, Model model) {
-    return "index";
-  }
+//  /**
+//   * 前台首页
+//   * GET
+//   */
+    @GetMapping("/post")
+    public String pFrontIndex(HttpServletRequest request, Model model) {
+      return "posts";
+    }
+//
+//  /**
+//   * 前台首页
+//   * POST
+//   */
+//  @PostMapping("/index")
+//  public String pFrontIndexPost(HttpServletRequest request, Model model) {
+//    return "index";
+//  }
 
   /**
    * 前台用户登录页

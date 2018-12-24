@@ -20,28 +20,6 @@
 - Markdown 编辑器：Editor.md
 - 数据库：MySQL
 
-
-### 2. 效果图
-
-#### 2.1 首页
-![首页](screenshots/home.png)
-
-#### 2.2 博客列表页
-![文章列表](screenshots/posts.png)
-
-
-#### 2.3 博客阅读页
-![文章阅读](screenshots/blog.png)
-
-
-#### 2.4 个人简历页
-![个人简历](screenshots/resume.png)
-
-
-#### 2.5 文章编辑页
-![编辑器](screenshots/editor.png)
-
-
 ### 3. 构建及运行
 
 #### 3.1 服务器环境
@@ -100,5 +78,3 @@ lemon-order为生成的镜像名， .表示当前目录
 
 5.然后就可以通过外网ip+端口号访问项目
 
-"# myblogo" 
-"# myblogo" 

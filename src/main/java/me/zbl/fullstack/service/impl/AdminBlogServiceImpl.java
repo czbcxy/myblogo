@@ -70,6 +70,7 @@ public class AdminBlogServiceImpl implements IAdminBlogService {
 
   @Override
   public Article blogSelectByPrimaryKey(Integer id) {
+    mArticleMapper.updateCountById(id);
     return mArticleMapper.selectByPrimaryKey(id);
   }
 

@@ -21,6 +21,7 @@ public class PostView {
   private String description;
   private String dateTime;
   private String htmlMaterial;
+  private Integer seeCount;
 
   /**
    * 拷贝构造方法
@@ -33,5 +34,6 @@ public class PostView {
     description = article.getIntroduction();
     dateTime = DateFormatUtils.format(article.getGmtCreate(), "yyyy-MM-dd HH:mm");
     htmlMaterial = article.getHtmlMaterial();
+    seeCount = article.getSeeCount();
   }
 }

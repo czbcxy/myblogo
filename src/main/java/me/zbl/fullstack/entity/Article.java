@@ -27,6 +27,17 @@ public class Article {
 
   private String introduction;
 
+  @Column(name = "see_count")
+  private Integer seeCount;
+
+  public Integer getSeeCount() {
+    return seeCount;
+  }
+
+  public void setSeeCount(Integer seeCount) {
+    this.seeCount = seeCount;
+  }
+
   /**
    * 文章内容
    */
