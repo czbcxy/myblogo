@@ -9,6 +9,7 @@ import me.zbl.fullstack.service.base.BaseViewTransableService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
@@ -27,8 +28,10 @@ public class PostServiceImpl extends BaseViewTransableService<Article, PostView>
 
   @Override
   public List<PostView> getPostList() {
-    List<Article> articles = mPostMapper.getPostViewAllArticles();
-    List<PostView> postViewList = transEntityToView(articles);
+    List<Article> newarticles = mPostMapper.getPostViewAllArticlesByToday();
+    List<Article> articles = mPostMapper.getPostViewAllArticles(15-(newarticles.size()));
+    newarticles.addAll(articles);
+    List<PostView> postViewList = transEntityToView(newarticles);
     return postViewList;
   }
 

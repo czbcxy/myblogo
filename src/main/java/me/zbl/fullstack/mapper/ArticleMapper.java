@@ -1,6 +1,7 @@
 package me.zbl.fullstack.mapper;
 
 import me.zbl.fullstack.entity.Article;
+import me.zbl.fullstack.entity.Tag;
 import me.zbl.fullstack.entity.dto.form.ArticleSearchForm;
 import me.zbl.fullstack.framework.mapper.IMyMapper;
 import me.zbl.fullstack.mapper.provider.ArticleSqlProvider;
@@ -15,51 +16,68 @@ import java.util.List;
  */
 public interface ArticleMapper extends IMyMapper<Article> {
 
-  String COLUMN_LIST = "article.id,title,introduction,article.gmt_create AS gmtCreate,article.gmt_modified AS gmtModified ,see_count as seeCount";
+    String COLUMN_LIST_NEW = "id," +
+            "CONCAT('[<small style=','color:red;','>NEW</small>] ',title) as title ," +
+            "introduction,gmt_create AS gmtCreate,gmt_modified AS gmtModified ,see_count as seeCount";
+    String COLUMN_LIST = "article.id,article.title,article.introduction,article.gmt_create AS gmtCreate,article.gmt_modified AS gmtModified ,article.see_count as seeCount";
 
-  @Select({
-                  "SELECT",
-                  COLUMN_LIST,
-                  "FROM",
-                  "article",
-                  "ORDER BY article.gmt_create DESC"
-          })
-  List<Article> getPostViewAllArticles();
+    @Select({"SELECT",
+            COLUMN_LIST_NEW,
+            " FROM article ",
+            "WHERE DATE(gmt_create) = DATE(NOW()) ",
+            "ORDER BY gmt_create DESC"
+    })
+    List<Article> getPostViewAllArticlesByToday();
 
-  /**
-   * 通过 tag id 查找文章
-   *
-   * @param id tag id
-   *
-   * @return 符合条件的文章
-   */
-  @Select({
-                  "SELECT",
-                  COLUMN_LIST,
-                  "FROM article",
-                  "INNER JOIN tag_article",
-                  "ON tag_article.article_id = article.id",
-                  "AND tag_article.tag_id=#{id}",
-                  "ORDER BY article.gmt_create DESC"
-          })
-  List<Article> getArticleListByTagId(Integer id);
+    @Select({
+            "SELECT",
+            COLUMN_LIST,
+            "FROM",
+            "article ",
+            "WHERE id NOT IN(SELECT id FROM article WHERE DATE(gmt_create) = DATE(NOW()))",
+            "ORDER BY see_count DESC ",
+            "limit #{size}"
+    })
+    List<Article> getPostViewAllArticles(Integer size);
 
-  /**
-   * 通过条件查找文章
-   *
-   * @param form 条件表单
-   *
-   * @return 符合条件的文章
-   */
-  @SelectProvider(type = ArticleSqlProvider.class, method = "getArticleByCondition")
-  List<Article> getArticleListByCondition(ArticleSearchForm form);
+    /**
+     * 通过 tag id 查找文章
+     *
+     * @param id tag id
+     * @return 符合条件的文章
+     */
+    @Select({
+            "SELECT",
+            COLUMN_LIST,
+            "FROM article",
+            "INNER JOIN tag_article",
+            "ON tag_article.article_id = article.id",
+            "AND tag_article.tag_id=#{id}",
+            "ORDER BY article.gmt_create DESC"
+    })
+    List<Article> getArticleListByTagId(Integer id);
 
-  /**
-   * 增加访问量
-   * @param id
-   */
-  @Update({
-          "UPDATE article SET  see_count = see_count + 1 WHERE id = #{id}"
-  })
-  void updateCountById(Integer id);
+    /**
+     * 通过条件查找文章
+     *
+     * @param form 条件表单
+     * @return 符合条件的文章
+     */
+    @SelectProvider(type = ArticleSqlProvider.class, method = "getArticleByCondition")
+    List<Article> getArticleListByCondition(ArticleSearchForm form);
+
+    /**
+     * 增加访问量
+     *
+     * @param id
+     */
+    @Update({
+            "UPDATE article SET  see_count = see_count + 1 WHERE id = #{id}"
+    })
+    void updateCountById(Integer id);
+
+    @Select({
+        "select id,name from tag"
+    })
+    List<Tag> blogSelectTags();
 }

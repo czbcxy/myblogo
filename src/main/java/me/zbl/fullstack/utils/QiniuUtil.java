@@ -1,5 +1,6 @@
 package me.zbl.fullstack.utils;
 
+
 import com.qiniu.common.QiniuException;
 import com.qiniu.common.Zone;
 import com.qiniu.http.Response;
@@ -104,8 +105,8 @@ public class QiniuUtil {
 
 
     public static void main(String[] args) throws IOException {
-        String path = "/Users/chengzhengbo/waigong.jpeg964538cf-8711-4985-9db2-0afa802139de7595552833384218650.jpeg";
-        String name = "waigong.jpeg";
+        String path = "C:\\Users\\k9952\\Desktop\\bitbug_favicon.ico";
+        String name = "bitbug_favicon";
         String upload = new QiniuUtil().upload(path, name);
         System.out.println(upload);
         System.out.println("完成上传");

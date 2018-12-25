@@ -30,6 +30,8 @@ public class AdminBlogServiceImpl implements IAdminBlogService {
   private ArticleMapper mArticleMapper;
   @Autowired
   private TagMapper mTagMapper;
+  @Autowired
+  private TagArticleMapper mTagArticleMapper;
 
   @Override
   @Transactional(rollbackFor = Exception.class)
@@ -65,8 +67,7 @@ public class AdminBlogServiceImpl implements IAdminBlogService {
     }
   }
 
-  @Autowired
-  private TagArticleMapper mTagArticleMapper;
+
 
   @Override
   public Article blogSelectByPrimaryKey(Integer id) {
@@ -90,7 +91,9 @@ public class AdminBlogServiceImpl implements IAdminBlogService {
   public void blogDelete(TableKeyModel model) {
     List<Integer> idList = model.getIds();
     for (Integer id : idList) {
-      mArticleMapper.deleteByPrimaryKey(id);
+//      mArticleMapper.deleteByPrimaryKey(id);
+       mTagMapper.tag_articleDeleteByIds(id);
+       mTagMapper.articleDeleteByIds(id);
     }
   }
 
@@ -104,5 +107,10 @@ public class AdminBlogServiceImpl implements IAdminBlogService {
     article.setTitle(form.getTitle());
     // 更新数据库中的信息
     mArticleMapper.updateByPrimaryKeySelective(article);
+  }
+
+  @Override
+  public List<Tag> blogSelectTags() {
+    return  mArticleMapper.blogSelectTags();
   }
 }

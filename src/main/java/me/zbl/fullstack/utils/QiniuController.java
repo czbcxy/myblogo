@@ -40,6 +40,7 @@ public class QiniuController {
             String prefix = fileName.substring(fileName.lastIndexOf("."));
             // 用uuid作为文件名，防止生成的临时文件重复
             String path = "/tmp/";
+//            String path ="C:\\Users\\k9952\\Desktop\\";
             /**
              fileName: 临时文件的名字, 生成后的文件名字将会是【fileName + 随机数】
              suffix： 文件后缀，例如.txt, .tmp

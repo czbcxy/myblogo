@@ -1,0 +1,13 @@
+http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://m.goczx.com/&title=【东莞厂房租售网|东莞厂房招租信息|东莞厂房网】-东莞i厂房网&desc=东莞i厂房网&summary=东莞i厂房网&site={{100*100}}&pics=http://img6.zcf8.com/black_logo1.png?imageView/3/w/67/h/27
+
+
+QZone：
+"http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url={{URL}}&title={{TITLE}}&desc={{DESC}}&summary={{SUMMARY}}&site={{SOURCE}}&pics={{IMAGE}}"
+
+QQ：
+"http://connect.qq.com/widget/shareqq/index.html?url={{URL}}&title={{TITLE}}&source={{SOURCE}}&desc={{DESC}}&pics={{IMAGE}}&summary={{SUMMARY}}"
+
+新浪微博：
+"http://service.weibo.com/share/mobile.php?url={{URL}}&title={{DESC}}&pic={{IMAGE}}&appkey={{WEIBOKEY}}"
+/79660258 
+版权声明：本文为博主原创文章，转载请附上博文链接！

@@ -1,6 +1,7 @@
 package me.zbl.fullstack.service.api;
 
 import me.zbl.fullstack.entity.Article;
+import me.zbl.fullstack.entity.Tag;
 import me.zbl.fullstack.entity.vo.ArticleDataGridView;
 import me.zbl.fullstack.entity.dto.request.TableKeyModel;
 import me.zbl.fullstack.entity.dto.form.BlogAddForm;
@@ -51,4 +52,9 @@ public interface IAdminBlogService {
    * @param form 表单
    */
   void blogModify(BlogModifyForm form);
+  /**
+   * 获取tags
+   *
+   */
+    List<Tag> blogSelectTags();
 }
