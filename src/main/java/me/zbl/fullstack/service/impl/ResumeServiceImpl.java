@@ -21,6 +21,8 @@ import me.zbl.fullstack.entity.dto.form.ResumeModifyForm;
 import me.zbl.fullstack.mapper.ResumeMapper;
 import me.zbl.fullstack.service.api.IResumeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 /**
@@ -35,11 +37,13 @@ public class ResumeServiceImpl implements IResumeService {
 
 
   @Override
+  @Cacheable(value = "resumeView")
   public Resume getResume() {
     return mResumeMapper.selectAll().get(0);
   }
 
   @Override
+  @CachePut(value = "resumeView")
   public void updateResume(ResumeModifyForm form, Resume resume) {
     resume.setId(1);
     resume.setHtmlMaterial(form.getHtmlMaterial());

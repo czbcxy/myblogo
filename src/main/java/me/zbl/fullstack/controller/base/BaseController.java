@@ -26,6 +26,7 @@ public class BaseController {
    */
   @ExceptionHandler
   public String handleException(HttpServletRequest request, Exception e) {
+    e.printStackTrace();
     return "/error";
   }
 

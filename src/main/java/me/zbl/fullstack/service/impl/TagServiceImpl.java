@@ -6,6 +6,7 @@ import me.zbl.fullstack.mapper.TagMapper;
 import me.zbl.fullstack.service.api.ITagService;
 import me.zbl.fullstack.service.base.BaseViewTransableService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -33,6 +34,7 @@ public class TagServiceImpl extends BaseViewTransableService<Tag, TagView> imple
   }
 
   @Override
+  @Cacheable(value = "tagListView")
   public List<TagView> getAllTagView() {
     return mTagMapper.selectAllTagView();
   }

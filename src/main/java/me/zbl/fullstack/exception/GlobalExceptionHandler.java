@@ -23,6 +23,7 @@ public class GlobalExceptionHandler {
   public String handleException(Exception e, Model model) {
     model.addAttribute("msg", e.getLocalizedMessage());
     e.printStackTrace();
+    System.out.println("123456786==============="+e);
     return "redirect:error";
   }
 }

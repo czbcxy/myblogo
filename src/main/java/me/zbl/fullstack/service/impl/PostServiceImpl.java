@@ -7,6 +7,7 @@ import me.zbl.fullstack.mapper.ArticleMapper;
 import me.zbl.fullstack.service.api.IPostsService;
 import me.zbl.fullstack.service.base.BaseViewTransableService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.lang.reflect.Array;
@@ -23,48 +24,48 @@ import java.util.List;
 @Service
 public class PostServiceImpl extends BaseViewTransableService<Article, PostView> implements IPostsService {
 
-  @Autowired
-  ArticleMapper mPostMapper;
+    @Autowired
+    ArticleMapper mPostMapper;
 
-  @Override
-  public List<PostView> getPostList() {
-    List<Article> newarticles = mPostMapper.getPostViewAllArticlesByToday();
-    List<Article> articles = mPostMapper.getPostViewAllArticles(15-(newarticles.size()));
-    newarticles.addAll(articles);
-    List<PostView> postViewList = transEntityToView(newarticles);
-    return postViewList;
-  }
-
-  @Override
-  @Deprecated
-  public List<PostView> getPostListByDate(Date start, Date end) {
-    return null;
-  }
-
-  @Override
-  public List<PostView> getPostListByTagId(Integer tagId) {
-    List<Article> articlelist = mPostMapper.getArticleListByTagId(tagId);
-    List<PostView> postViewList = transEntityToView(articlelist);
-    return postViewList;
-  }
-
-  @Override
-  public List<PostView> getPostListByArticleCondition(ArticleSearchForm form) {
-    Article article = new Article();
-    article.setTitle(form.getName());
-    List<Article> articleList = mPostMapper.getArticleListByCondition(form);
-    return transEntityToView(articleList);
-  }
-
-  @Override
-  protected List<PostView> transEntityToView(List<Article> entityList) {
-    List<PostView> postViewsList = new ArrayList<>();
-    Iterator it = entityList.iterator();
-    while (it.hasNext()) {
-      Article article = (Article) it.next();
-      PostView postView = new PostView(article);
-      postViewsList.add(postView);
+    @Override
+    public List<PostView> getPostList() {
+        List<Article> newarticles = mPostMapper.getPostViewAllArticlesByToday();
+        List<Article> articles = mPostMapper.getPostViewAllArticles(15 - (newarticles.size()));
+        newarticles.addAll(articles);
+        List<PostView> postViewList = transEntityToView(newarticles);
+        return postViewList;
     }
-    return postViewsList;
-  }
+
+    @Override
+    @Deprecated
+    public List<PostView> getPostListByDate(Date start, Date end) {
+        return null;
+    }
+
+    @Override
+    public List<PostView> getPostListByTagId(Integer tagId) {
+        List<Article> articlelist = mPostMapper.getArticleListByTagId(tagId);
+        List<PostView> postViewList = transEntityToView(articlelist);
+        return postViewList;
+    }
+
+    @Override
+    public List<PostView> getPostListByArticleCondition(ArticleSearchForm form) {
+        Article article = new Article();
+        article.setTitle(form.getName());
+        List<Article> articleList = mPostMapper.getArticleListByCondition(form);
+        return transEntityToView(articleList);
+    }
+
+    @Override
+    protected List<PostView> transEntityToView(List<Article> entityList) {
+        List<PostView> postViewsList = new ArrayList<>();
+        Iterator it = entityList.iterator();
+        while (it.hasNext()) {
+            Article article = (Article) it.next();
+            PostView postView = new PostView(article);
+            postViewsList.add(postView);
+        }
+        return postViewsList;
+    }
 }

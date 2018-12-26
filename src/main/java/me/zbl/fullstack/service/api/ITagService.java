@@ -1,6 +1,7 @@
 package me.zbl.fullstack.service.api;
 
 import me.zbl.fullstack.entity.vo.TagView;
+import org.springframework.cache.annotation.Cacheable;
 
 import java.util.List;
 
@@ -16,5 +17,6 @@ public interface ITagService {
    *
    * @return Tag 视图
    */
+  @Cacheable(value = "tagListView")
   List<TagView> getAllTagView();
 }

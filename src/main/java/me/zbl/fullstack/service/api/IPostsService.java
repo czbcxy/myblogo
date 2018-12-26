@@ -2,6 +2,7 @@ package me.zbl.fullstack.service.api;
 
 import me.zbl.fullstack.entity.vo.PostView;
 import me.zbl.fullstack.entity.dto.form.ArticleSearchForm;
+import org.springframework.cache.annotation.Cacheable;
 
 import java.util.Date;
 import java.util.List;
@@ -18,6 +19,7 @@ public interface IPostsService {
    *
    * @return 博客视图实体集合
    */
+  @Cacheable(value = "projects")
   List<PostView> getPostList();
 
   /**
@@ -28,6 +30,7 @@ public interface IPostsService {
    *
    * @return 博客视图集合
    */
+//  @Cacheable(value = "")
   List<PostView> getPostListByDate(Date start, Date end);
 
   /**
@@ -37,6 +40,7 @@ public interface IPostsService {
    *
    * @return 文章
    */
+  @Cacheable(value = "tagList")
   List<PostView> getPostListByTagId(Integer tagId);
 
   /**
@@ -46,5 +50,6 @@ public interface IPostsService {
    *
    * @return 文章
    */
+  @Cacheable(value = "profileOfInfo")
   List<PostView> getPostListByArticleCondition(ArticleSearchForm form);
 }

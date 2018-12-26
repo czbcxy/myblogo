@@ -12,6 +12,7 @@ import me.zbl.fullstack.mapper.TagArticleMapper;
 import me.zbl.fullstack.mapper.TagMapper;
 import me.zbl.fullstack.service.api.IAdminBlogService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -76,6 +77,7 @@ public class AdminBlogServiceImpl implements IAdminBlogService {
   }
 
   @Override
+//  @Cacheable(value = "Article")
   public List<ArticleDataGridView> getArticleList() {
     List<Article> articleList = mArticleMapper.selectAll();
     List<ArticleDataGridView> viewList = new ArrayList<>();

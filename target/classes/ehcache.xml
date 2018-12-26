@@ -42,6 +42,9 @@
     <cache name="tagList"
            maxElementsInMemory="1"
     />
+    <cache name="tagListView"
+           maxElementsInMemory="1"
+    />
     <cache name="projects"
            maxElementsInMemory="1"
     />
