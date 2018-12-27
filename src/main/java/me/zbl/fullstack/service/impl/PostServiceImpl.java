@@ -6,6 +6,7 @@ import me.zbl.fullstack.entity.dto.form.ArticleSearchForm;
 import me.zbl.fullstack.mapper.ArticleMapper;
 import me.zbl.fullstack.service.api.IPostsService;
 import me.zbl.fullstack.service.base.BaseViewTransableService;
+import me.zbl.fullstack.utils.BaseUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
@@ -29,11 +30,26 @@ public class PostServiceImpl extends BaseViewTransableService<Article, PostView>
 
     @Override
     public List<PostView> getPostList() {
+        List<Article> hot = mPostMapper.getPostViewAllHotArticles();
         List<Article> newarticles = mPostMapper.getPostViewAllArticlesByToday();
-        List<Article> articles = mPostMapper.getPostViewAllArticles(15 - (newarticles.size()));
-        newarticles.addAll(articles);
-        List<PostView> postViewList = transEntityToView(newarticles);
+        List<Article> articles = mPostMapper.getPostViewAllArticles();
+        List<Article> articles1 = SortingAlgorithm(newarticles, articles);
+        hot.addAll(articles1);
+        List<PostView> postViewList = transEntityToView(hot);
         return postViewList;
+    }
+
+    private List<Article> SortingAlgorithm( List<Article> newarticles,List<Article> articles ){
+        List<Article> list = new ArrayList<>();
+        List<Integer> randem = BaseUtils.getRandem(newarticles.size());
+        randem.forEach(x->list.add(newarticles.get(x)));
+        List<Integer> randem1 = BaseUtils.getRandem2(articles.size());
+        for (int i = 0; i < randem1.size(); i++) {
+            if (list.size()>=15)
+                break;
+            list.add(articles.get(randem1.get(i)));
+        }
+        return list;
     }
 
     @Override

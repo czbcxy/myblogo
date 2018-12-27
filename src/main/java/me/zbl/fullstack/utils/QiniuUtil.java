@@ -28,6 +28,7 @@ public class QiniuUtil {
     private static final String style = "imageMogr2/thumbnail/400x400!/format/jpg/blur/1x0/quality/100|watermark/1/image/aHR0cDovLzd4a3YxcS5jb20xLnowLmdsYi5jbG91ZGRuLmNvbS93YXRlcm1hcmsucG5n/dissolve/100/gravity/SouthEast/dx/10/dy/10";
 
     private static Configuration cdfg = new Configuration(Zone.zone2());
+//    private static Configuration cdfg = new Configuration(Zone.zoneNa0());
     private static Auth auth = Auth.create(ACCESS_KEY, SECRET_KEY);
 
     public String getUpToken() {
@@ -103,9 +104,8 @@ public class QiniuUtil {
         public int height;
     }
 
-
     public static void main(String[] args) throws IOException {
-        String path = "C:\\Users\\k9952\\Desktop\\bitbug_favicon.ico";
+        String path = "C:\\Users\\k9952\\Desktop\\美女.jpg";
         String name = "bitbug_favicon";
         String upload = new QiniuUtil().upload(path, name);
         System.out.println(upload);

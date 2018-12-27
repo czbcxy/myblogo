@@ -16,29 +16,39 @@ import java.util.List;
  */
 public interface ArticleMapper extends IMyMapper<Article> {
 
+    String COLUMN_LIST_HOT = "id," +
+            "CONCAT('[<small style=','color:red;','>热</small>] ',title) as title ," +
+            "introduction,gmt_create AS gmtCreate,gmt_modified AS gmtModified ,see_count as seeCount";
     String COLUMN_LIST_NEW = "id," +
-            "CONCAT('[<small style=','color:red;','>NEW</small>] ',title) as title ," +
+            "CONCAT('[<small style=','color:red;','>New</small>] ',title) as title ," +
             "introduction,gmt_create AS gmtCreate,gmt_modified AS gmtModified ,see_count as seeCount";
     String COLUMN_LIST = "article.id,article.title,article.introduction,article.gmt_create AS gmtCreate,article.gmt_modified AS gmtModified ,article.see_count as seeCount";
 
     @Select({"SELECT",
             COLUMN_LIST_NEW,
             " FROM article ",
-            "WHERE DATE(gmt_create) = DATE(NOW()) ",
-            "ORDER BY gmt_create DESC"
+            "WHERE DATE_SUB(CURDATE(), INTERVAL 7 DAY) <= DATE(gmt_create) ",
+            "ORDER BY see_count DESC",
+            "limit 1,999999"
     })
     List<Article> getPostViewAllArticlesByToday();
-
+    @Select({"SELECT",
+            COLUMN_LIST_HOT,
+            "FROM article ",
+            "ORDER BY see_count DESC",
+            "limit 1"
+    })
+    List<Article> getPostViewAllHotArticles();
     @Select({
             "SELECT",
             COLUMN_LIST,
             "FROM",
             "article ",
-            "WHERE id NOT IN(SELECT id FROM article WHERE DATE(gmt_create) = DATE(NOW()))",
-            "ORDER BY see_count DESC ",
-            "limit #{size}"
+            "WHERE id NOT IN(SELECT id FROM article WHERE DATE_SUB(CURDATE(), INTERVAL 7 DAY) <= DATE(gmt_create))",
+//            "ORDER BY see_count DESC ",
+//            "limit #{size}"
     })
-    List<Article> getPostViewAllArticles(Integer size);
+    List<Article> getPostViewAllArticles();
 
     /**
      * 通过 tag id 查找文章

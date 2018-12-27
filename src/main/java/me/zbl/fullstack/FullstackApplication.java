@@ -202,7 +202,10 @@
 */
 package me.zbl.fullstack;
 
+import me.zbl.fullstack.service.api.IUserService;
+import org.aspectj.lang.annotation.After;
 import org.mybatis.spring.annotation.MapperScan;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.MultipartConfigFactory;
@@ -272,4 +275,5 @@ public class FullstackApplication {
     factory.setMaxRequestSize("1024000KB");
     return factory.createMultipartConfig();
   }
+
 }

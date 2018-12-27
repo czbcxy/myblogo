@@ -77,7 +77,6 @@ public class AdminBlogServiceImpl implements IAdminBlogService {
   }
 
   @Override
-//  @Cacheable(value = "Article")
   public List<ArticleDataGridView> getArticleList() {
     List<Article> articleList = mArticleMapper.selectAll();
     List<ArticleDataGridView> viewList = new ArrayList<>();

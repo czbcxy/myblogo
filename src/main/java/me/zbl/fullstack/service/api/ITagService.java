@@ -17,6 +17,5 @@ public interface ITagService {
    *
    * @return Tag 视图
    */
-  @Cacheable(value = "tagListView")
   List<TagView> getAllTagView();
 }

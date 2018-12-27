@@ -105,7 +105,6 @@ public class AdminController extends BaseController {
    */
   @PostMapping("/blogadd.f")
   public String fAdminBlogAdd(BlogAddForm blogAddForm) {
-    // TODO: 17-12-4 返回 json ，成功则重定向到博客列表
     mBlogService.blogAdd(blogAddForm);
     return "redirect:/admin/index";
   }
@@ -115,7 +114,6 @@ public class AdminController extends BaseController {
    */
   @PostMapping("blog_modify.f")
   public String fAdminBlogModify(BlogModifyForm modifyForm) {
-    // TODO: 17-12-4 返回 json ，成功则重定向到博客列表
     mBlogService.blogModify(modifyForm);
     return "redirect:/admin/index";
   }

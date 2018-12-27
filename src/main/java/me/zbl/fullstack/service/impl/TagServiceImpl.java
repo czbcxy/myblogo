@@ -34,7 +34,6 @@ public class TagServiceImpl extends BaseViewTransableService<Tag, TagView> imple
   }
 
   @Override
-  @Cacheable(value = "tagListView")
   public List<TagView> getAllTagView() {
     return mTagMapper.selectAllTagView();
   }

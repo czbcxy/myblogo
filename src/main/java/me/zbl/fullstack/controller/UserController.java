@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.util.List;
 
@@ -35,7 +36,7 @@ public class UserController extends BaseController {
    * 表单提交
    */
   @PostMapping("/userlogin.f")
-  public String fFrontUserLogin(HttpServletRequest request, Model model, @Valid UserLoginForm loginForm, BindingResult bindingResult) throws Exception {
+  public String fFrontUserLogin(HttpServletRequest request,HttpServletResponse resp, Model model, @Valid UserLoginForm loginForm, BindingResult bindingResult) throws Exception {
     if (bindingResult.hasErrors()) {
       List<ObjectError> errors = bindingResult.getAllErrors();
       addModelAtt(model, VIEW_MSG, errors.get(0).getDefaultMessage());
@@ -43,7 +44,7 @@ public class UserController extends BaseController {
     }
     User user = mUserService.loginAuthentication(loginForm);
     if (null != user) {
-      mUserService.joinSession(request, user);
+      mUserService.joinSession(request, resp, user);
       return "redirect:/";
     }
     addModelAtt(model, VIEW_MSG, "用户名或密码错误");

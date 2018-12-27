@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="me.zbl.fullstack.mapper.AddrMapper">
+  <resultMap id="BaseResultMap" type="me.zbl.fullstack.entity.Addr">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="addr" jdbcType="VARCHAR" property="addr" />
+    <result column="req_date" jdbcType="timstrap" property="req_date" />
+  </resultMap>
+</mapper>

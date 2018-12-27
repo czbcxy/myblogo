@@ -1,6 +1,7 @@
 package me.zbl.fullstack.controller;
 
 import me.zbl.fullstack.controller.base.BaseController;
+import me.zbl.fullstack.entity.Addr;
 import me.zbl.fullstack.entity.Article;
 import me.zbl.fullstack.entity.vo.PostView;
 import me.zbl.fullstack.entity.vo.TagView;
@@ -8,6 +9,7 @@ import me.zbl.fullstack.entity.dto.form.ArticleSearchForm;
 import me.zbl.fullstack.service.api.IAdminBlogService;
 import me.zbl.fullstack.service.api.IPostsService;
 import me.zbl.fullstack.service.api.ITagService;
+import me.zbl.fullstack.service.api.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Controller;
@@ -36,6 +38,8 @@ public class PostContoller extends BaseController {
 
     @Autowired
     private IAdminBlogService mBlogService;
+    @Autowired
+    private IUserService iUserService;
 
     /**
      * 博客列表页
@@ -45,6 +49,8 @@ public class PostContoller extends BaseController {
      */
     @GetMapping("/index")
     public String pPostList(HttpServletRequest request, Model model, Integer tagId) throws Exception {
+        //记录登录信心
+        iUserService.saveuserIp(new Addr(request.getRemoteAddr()));
         List<PostView> postViewList = null;
         if (null != tagId) {
             postViewList = mPostService.getPostListByTagId(tagId);

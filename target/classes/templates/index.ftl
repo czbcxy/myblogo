@@ -59,7 +59,7 @@
                             </a>
                             <p style="font-size: 10px;color: #6c757d;font-family: "Microsoft YaHei", Helvetica, "Meiryo UI", "Malgun Gothic", "Segoe UI", "Trebuchet MS", Monaco, monospace, Tahoma, STXihei, "华文细黑", STHeiti, "Helvetica Neue", "Droid Sans", "wenquanyi micro hei", FreeSans, Arimo, Arial, SimSun, "宋体", Heiti, "黑体", sans-serif;">&nbsp;&nbsp;${post.description}&nbsp;......
                                 <h6 style="text-align:right;color: #6c71c4;">
-                                    <small>| 阅读量:${post.seeCount!""} | 创建时间：${post.dateTime!""} |</small>
+                                    <small style="font-size: 12px">| 阅读量:${post.seeCount!""} | 创建时间：${post.dateTime!""} |</small>
                                 </h6>
                             </p>
                         </div>

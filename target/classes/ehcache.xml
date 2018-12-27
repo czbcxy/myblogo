@@ -30,28 +30,28 @@
             memoryStoreEvictionPolicy="FIFO"
     />
     <!--cache配置同defaultCache -->
-    <cache name="profileOfInfo"
+    <cache name="blogoInfo"
            maxElementsInMemory="1"
     />
     <cache name="resumeView"
            maxElementsInMemory="1"
     />
-    <cache name="archives"
-           maxElementsInMemory="1"
-    />
-    <cache name="tagList"
-           maxElementsInMemory="1"
-    />
-    <cache name="tagListView"
-           maxElementsInMemory="1"
-    />
-    <cache name="projects"
-           maxElementsInMemory="1"
-    />
-    <cache name="projectPageNum"
-           maxElementsInMemory="1"
-    />
-    <cache name="archivePageNum"
-           maxElementsInMemory="1"
-    />
+    <!--<cache name="archives"-->
+           <!--maxElementsInMemory="1"-->
+    <!--/>-->
+    <!--<cache name="tagList"-->
+           <!--maxElementsInMemory="1"-->
+    <!--/>-->
+    <!--<cache name="tagListView"-->
+           <!--maxElementsInMemory="1"-->
+    <!--/>-->
+    <!--<cache name="projects"-->
+           <!--maxElementsInMemory="1"-->
+    <!--/>-->
+    <!--<cache name="projectPageNum"-->
+           <!--maxElementsInMemory="1"-->
+    <!--/>-->
+    <!--<cache name="archivePageNum"-->
+           <!--maxElementsInMemory="1"-->
+    <!--/>-->
 </ehcache>

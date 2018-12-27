@@ -1,11 +1,13 @@
 package me.zbl.fullstack.service.api;
 
 
+import me.zbl.fullstack.entity.Addr;
 import me.zbl.fullstack.entity.User;
 import me.zbl.fullstack.entity.dto.form.UserLoginForm;
 import me.zbl.fullstack.entity.dto.form.UserRegisterForm;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  * 用户信息操作接口
@@ -45,7 +47,7 @@ public interface IUserService {
    * @param request 用户请求
    * @param user    当前用户的信息
    */
-  void joinSession(HttpServletRequest request, User user);
+  void joinSession(HttpServletRequest request, HttpServletResponse resp, User user);
 
   /**
    * 从会话中销毁用户信息
@@ -53,4 +55,9 @@ public interface IUserService {
    * @param request 用户请求
    */
   void destroySession(HttpServletRequest request);
+
+  /**
+   * 访问的用户
+   */
+  void saveuserIp(Addr addr);
 }

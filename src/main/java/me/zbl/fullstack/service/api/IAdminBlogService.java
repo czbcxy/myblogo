@@ -6,6 +6,7 @@ import me.zbl.fullstack.entity.vo.ArticleDataGridView;
 import me.zbl.fullstack.entity.dto.request.TableKeyModel;
 import me.zbl.fullstack.entity.dto.form.BlogAddForm;
 import me.zbl.fullstack.entity.dto.form.BlogModifyForm;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 
@@ -23,7 +24,7 @@ public interface IAdminBlogService {
      *
      * @param form 表单
      */
-    @CachePut(value = "projects")
+    @CacheEvict(value = "blogoInfo")
     void blogAdd(BlogAddForm form);
 
     /**
@@ -32,7 +33,7 @@ public interface IAdminBlogService {
      * @param id id
      * @return 文章实体
      */
-    @Cacheable(value = "archives")
+    @Cacheable(value = "blogoInfo")
     Article blogSelectByPrimaryKey(Integer id);
 
     /**
@@ -40,7 +41,6 @@ public interface IAdminBlogService {
      *
      * @return 文章列表视图实体集合
      */
-    @Cacheable(value = "projects")
     List<ArticleDataGridView> getArticleList();
 
     /**
@@ -48,7 +48,7 @@ public interface IAdminBlogService {
      *
      * @param model 数据模型
      */
-    @CachePut(value = "projects")
+    @CacheEvict(value = "blogoInfo")
     void blogDelete(TableKeyModel model);
 
     /**
@@ -56,12 +56,11 @@ public interface IAdminBlogService {
      *
      * @param form 表单
      */
-    @CachePut(value = "projects")
+    @CacheEvict(value = "blogoInfo")
     void blogModify(BlogModifyForm form);
 
     /**
      * 获取tags
      */
-    @Cacheable(value = "tagList")
     List<Tag> blogSelectTags();
 }
